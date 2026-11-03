@@ -4,7 +4,7 @@ A browser tool that listens to a lecture, transcribes it live, and turns it into
 
 I built this for a course where the professor speaks quickly and the slides cover only a fraction of what's said in class. Upload the lecture PDF, start recording, and press → whenever the professor changes slides. Everything said from then on is filed under that slide, so the notes and the deck line up without any work after the lecture.
 
-**Live app:** https://YOUR-USERNAME.github.io/lecture-notes-live/
+**Live app:** https://aarushi-bhargava.github.io/lecture-notes-live/
 
 <!-- Add a demo GIF here once you have one: ![Demo](demo.gif) -->
 
