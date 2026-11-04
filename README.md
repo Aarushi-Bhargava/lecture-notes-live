@@ -47,7 +47,35 @@ To run it locally instead, serve the folder over `localhost` (microphone access 
 ```bash
 python3 -m http.server 8000
 # then open http://localhost:8000
+
 ```
+
+## Getting free API keys (optional)
+
+The app works without any keys: every sentence the professor says becomes its own bullet. Add a free key to get condensed AI notes instead. Adding both is recommended, so if one provider is busy, the other takes over automatically.
+
+Keys are stored only in your own browser and are never part of this repo. Don't share your keys; free limits are per account.
+
+### Google Gemini
+1. Go to [aistudio.google.com](https://aistudio.google.com) and sign in with a **personal** Google account (school accounts sometimes have AI Studio disabled).
+2. Click **Get API key → Create API key**. If asked for a project, use the default or create one.
+3. Copy the key (starts with `AIza`). No billing or credit card needed.
+
+### Groq
+1. Go to [console.groq.com](https://console.groq.com) and sign up with Google or GitHub.
+2. Open **API Keys → Create API Key**, give it any name.
+3. Copy the key right away (starts with `gsk_`); Groq only shows it once.
+
+### Add them to the app
+1. Open the app and click **Settings**.
+2. Paste each key into its field and click **Test my keys**. You should see ✓ for each.
+3. Click **Save**.
+
+**Troubleshooting**
+- *"Key rejected"*: the key was copied incorrectly; create a new one.
+- *"High demand" / model busy (Gemini)*: Google's servers are overloaded, not your key. Change the Gemini **Model** box to `gemini-flash-lite-latest` (or `gemini-2.5-flash`), or set **Try this provider first** to Groq.
+- *Model not found*: free model names change over time; check the provider's model list and update the **Model** box.
+- Keys are saved per browser and per site, so you'll need to enter them again on a different computer or browser.
 
 ## Limitations
 
