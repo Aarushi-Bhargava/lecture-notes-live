@@ -304,8 +304,7 @@ function deckHasContent(){ return deck.slides.some(slideHasContent); }
 let saveTimer = null;
 function save(){ clearTimeout(saveTimer); saveTimer = setTimeout(saveNow, 400); }
 function saveNow(){
-  deck.elapsed = elapsed();
-  const ok = LS.set('lnl.session.' + deck.id, deck);
+  const ok = LS.set('lnl.session.' + deck.id, Object.assign({}, deck, { elapsed: elapsed() }));
   LS.set('lnl.last', deck.id);
   const idx = LS.get('lnl.index', {}); idx[deck.id] = { name: deck.name, pdfName: deck.pdfName, t: Date.now() }; LS.set('lnl.index', idx);
   if (!ok) setStatus('Browser storage is full; use Export → Save session file to be safe', true);
@@ -871,7 +870,7 @@ $('#menu').addEventListener('click', async e => {
     if (mediaRec && mediaRec.state === 'recording'){ try{ mediaRec.requestData(); }catch(err){} await new Promise(r => setTimeout(r, 300)); }
     downloadBlob(new Blob(audioChunks, { type: audioChunks[0].type || 'audio/webm' }), safeName(deck.name) + '_audio.webm');
   }
-  if (act === 'save'){ deck.elapsed = elapsed(); downloadBlob(new Blob([JSON.stringify(deck, null, 1)], { type:'application/json' }), safeName(deck.name) + '_session.json'); }
+  if (act === 'save'){ downloadBlob(new Blob([JSON.stringify(Object.assign({}, deck, { elapsed: elapsed() }), null, 1)], { type:'application/json' }), safeName(deck.name) + '_session.json'); }
   if (act === 'new'){
     if (wantRec){ toast('Pause recording first.'); return; }
     if (deckHasContent() && !(await confirmBox('Start a new lecture?', 'Your current notes stay saved in this browser and reopen if you upload the same PDF again. Download them first if you want a copy.'))) return;
